@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'http://arturitos-api.herokuapp.com/api'
+  api: 'https://arturitos-api.herokuapp.com/api'
 };
