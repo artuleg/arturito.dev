@@ -1,0 +1,36 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 17px;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+mat-card {
+    margin-bottom: 27px;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.icon-link {
+    vertical-align: middle;
+}
+
+.green {
+    color: #05CC46;
+}
+
+.red {
+    background: -webkit-linear-gradient(45deg, #ff1744, #ff5252);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.white {
+    background: -webkit-linear-gradient(45deg, white, #616161);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

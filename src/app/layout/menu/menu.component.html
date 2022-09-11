@@ -1,0 +1,18 @@
+<mat-card class="mat-elevation-z8">
+    <mat-card-header>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title></mat-card-title>
+    </mat-card-header>
+</mat-card>
+<mat-list>
+    <mat-list-item 
+        [ngClass]="{ active: activeMenu(menu) }" 
+        matRipple 
+        *ngFor="let menu of menus"
+        (click)="navigate(menu)">
+        <mat-divider></mat-divider>
+        <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>
+        <div mat-line>{{menu.name}}</div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+</mat-list>

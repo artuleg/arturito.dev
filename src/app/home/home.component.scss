@@ -1,0 +1,68 @@
+.header-image {
+  background-image: url('/assets/img/yo.png');
+  background-size: cover;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.icon-link {
+  vertical-align: middle;
+}
+
+span {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.deviant-art {
+  color: #05CC46;
+}
+
+.blue {
+  color: #039be5;
+}
+
+.red {
+  color: #f44336;
+}
+
+.orange {
+  color: #fb8c00;
+}
+
+.yellow {
+  color: #fdd835;
+}
+
+.blue {
+  color: #03a9f4;
+}
+
+.purple {
+  color: #ba68c8;
+}
+
+
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid greenyellow; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: greenyellow; }
+}

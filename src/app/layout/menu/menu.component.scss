@@ -1,0 +1,25 @@
+mat-list-item {
+    cursor: pointer;
+}
+
+mat-card {
+    background-image: url('/assets/img/blur.jpeg');
+}
+
+.mat-card-avatar {
+    height: 60px;
+    width: 60px;
+}
+
+mat-card-title {
+    margin-top: 22px;
+}
+
+.header-image {
+    background-image: url('/assets/img/code.jpeg');
+    background-size: cover;
+}
+
+.active {
+    color: greenyellow;
+}
