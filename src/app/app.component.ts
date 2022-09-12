@@ -39,6 +39,12 @@ export class AppComponent implements OnInit {
       this.menuOpened = false;
       this.menuMode = 'over';
     }
+
+    const cursor: any = document.getElementById("cursor");
+    document.body.addEventListener("mousemove", (e) => {
+      cursor.style.left = e.clientX + "px",
+      cursor.style.top = e.clientY + "px";
+    });
   }
 
   navigate() {
