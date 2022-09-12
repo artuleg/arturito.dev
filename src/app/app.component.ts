@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   menuOpened = true;
   menuMode: MatDrawerMode = 'side';
 
-  constructor(private http: HttpClient, elementRef: ElementRef) {
+  constructor(private http: HttpClient, elementRef: ElementRef, private cdRef: ChangeDetectorRef) {
     const hammertime = new (window as any).Hammer(elementRef.nativeElement, {});
     hammertime.on('panright', () => {
         this.sidenav.open();
@@ -39,12 +39,25 @@ export class AppComponent implements OnInit {
       this.menuOpened = false;
       this.menuMode = 'over';
     }
+    this.toggleCursor();
+    this.activateCursor();
+  }
 
-    const cursor: any = document.getElementById("cursor");
-    document.body.addEventListener("mousemove", (e) => {
-      cursor.style.left = e.clientX + "px",
-      cursor.style.top = e.clientY + "px";
+  activateCursor(): void {
+    const cursor: any = document.getElementById('cursor');
+    document.body.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
     });
+  }
+
+  toggleCursor() {
+    const cursor: HTMLElement | any = document.getElementById('cursor');
+    if ((<any> navigator).userAgentData.mobile === false) {
+      cursor.className = 'cursor';
+    } else {
+      cursor.className = '';
+    }
   }
 
   navigate() {
@@ -62,6 +75,7 @@ export class AppComponent implements OnInit {
   onResize(event: any) {
     const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
+    this.toggleCursor();
     if (width <= 750) {
       this.menuOpened = false;
       this.menuMode = 'over';
