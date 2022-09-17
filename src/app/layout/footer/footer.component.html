@@ -3,12 +3,7 @@
     <footer>
         <div *ngIf="numberVisitors > 0">
             <mat-chip-list>
-                <mat-chip color="primary">{{ numberVisitors }}</mat-chip> awesome persons has visited me!
-            </mat-chip-list>
-        </div>
-        <span class="space"></span>
-        <div>
-            <mat-chip-list>
+                <mat-chip color="primary">{{ numberVisitors }} awesome persons has visited me!</mat-chip>
                 <mat-chip>
                     <span style="margin-right: 17px;">Made with</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16"
@@ -18,6 +13,12 @@
                         </path>
                     </svg>
                 </mat-chip>
+            </mat-chip-list>
+        </div>
+        <span class="space"></span>
+        <div>
+            <mat-chip-list>
+                
             </mat-chip-list>
         </div>
     </footer>
