@@ -5,7 +5,9 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
   { path: 'projects', loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule) },
   { path: 'social', loadChildren: () => import('./social/social.module').then(m => m.SocialModule) },
-  { path: 'resume', loadChildren: () => import('./resume/resume.module').then(m => m.ResumeModule) }
+  { path: 'resume', loadChildren: () => import('./resume/resume.module').then(m => m.ResumeModule) },
+
+  { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({
