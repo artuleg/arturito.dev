@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatDrawerMode, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
-import { filter, map } from 'rxjs';
+import { filter, interval, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConnectComponent } from './shared/dialog-connect/dialog-connect.component';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'arturo-root',
@@ -31,8 +32,24 @@ export class AppComponent implements OnInit, AfterViewInit {
     elementRef: ElementRef, 
     private cdRef: ChangeDetectorRef,
     private router: Router,
-    public dialog: MatDialog
-  ) {}
+    public dialog: MatDialog,
+    private updates: SwUpdate
+  ) {
+    if (updates.isEnabled) {
+      interval(6 * 60 * 60).subscribe(() => updates.checkForUpdate()
+        .then(() => console.log('checking for updates')));
+    }
+    this.checkForUpdates();
+  }
+
+  public checkForUpdates(): void {
+    this.updates.available.subscribe(event => this.promptUser());
+  }
+
+  private promptUser(): void {
+    console.log('updating to new version');
+    this.updates.activateUpdate().then(() => document.location.reload()); 
+  }
 
   ngOnInit(): void {
     this.http.post<{totalVisits: number, showedPopup: boolean}>(`${environment.api}/visitor`, null).subscribe(res => {
