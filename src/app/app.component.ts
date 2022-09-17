@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -11,24 +11,17 @@ import { stepper } from './core/router-animations';
   styleUrls: ['./app.component.scss'],
   animations: []
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSidenav)
   public sidenav!: MatSidenav;
+
+  @ViewChild('menuSlide') menuSlide!: ElementRef<HTMLDivElement>;
   
   menuOpened = true;
   menuMode: MatDrawerMode = 'side';
 
   constructor(private http: HttpClient, elementRef: ElementRef, private cdRef: ChangeDetectorRef) {
-    const hammertime = new (window as any).Hammer(elementRef.nativeElement, {});
-    hammertime.on('panright', () => {
-        this.sidenav.open();
-        this.menuOpened = true;
-    });
-    hammertime.on('panleft', () => {
-        this.sidenav.close();
-        this.menuOpened = false;
-    });
   }
 
   ngOnInit(): void {
@@ -41,6 +34,18 @@ export class AppComponent implements OnInit {
     }
     this.toggleCursor();
     this.activateCursor();
+  }
+
+  ngAfterViewInit(): void {
+    const hammertime = new (window as any).Hammer(this.menuSlide.nativeElement, {});
+    hammertime.on('panright', () => {
+        this.sidenav.open();
+        this.menuOpened = true;
+    });
+    hammertime.on('panleft', () => {
+        this.sidenav.close();
+        this.menuOpened = false;
+    });
   }
 
   activateCursor(): void {

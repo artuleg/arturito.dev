@@ -9,8 +9,35 @@ mat-sidenav {
 }
 
 main {
-    margin: 27px
+    margin: 27px;
 }
+
+.all-wrap {
+    min-height: 100vh;
+  }
+  
+  .page-wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .content {
+    flex: 1;
+  }
+  
+  
+  /*
+   * Make the Component injected by Router Outlet full height:
+   */
+  main {
+    display: flex;
+    flex-direction: column;
+    > *:not(router-outlet) {
+      flex: 1;
+      display: block;
+    }
+  }
 
 .cursor {
     position: fixed;
@@ -27,4 +54,12 @@ main {
     height: 40px;
     width: 40px;
     transition: all 300ms ease-out;
+}
+
+.menu-slide {
+  width: 34px;
+  background-color: transparent;
+  height: 100vh;
+  position: absolute;
+  z-index: 10000;
 }

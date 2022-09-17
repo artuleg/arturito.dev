@@ -1,14 +1,18 @@
 <div id="cursor"></div>
 
-<mat-sidenav-container fullscreen>
+<mat-sidenav-container fullscreen class="all-wrap">
     <mat-sidenav [opened]="menuOpened" [mode]="menuMode">
         <arturo-menu (onNavigate)="navigate()"></arturo-menu>
     </mat-sidenav>
     <mat-sidenav-content>
-        <arturo-header [menuOpened]="menuOpened" [menuMode]="menuMode" (onClickMenuIcon)="toggleMenu()"></arturo-header>
-        <main>
-            <router-outlet #outlet="outlet"></router-outlet>
-        </main>
-        <arturo-footer></arturo-footer>
+        <div #menuSlide class="menu-slide"></div>
+        <div class="page-wrap">
+            <arturo-header [menuOpened]="menuOpened" [menuMode]="menuMode" (onClickMenuIcon)="toggleMenu()">
+            </arturo-header>
+            <main class="content">
+                <router-outlet></router-outlet>
+            </main>
+            <arturo-footer></arturo-footer>
+        </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
