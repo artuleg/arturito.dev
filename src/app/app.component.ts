@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
-import { RouterOutlet } from '@angular/router';
+import { MatDrawerMode, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
+import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
+import { filter, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { stepper } from './core/router-animations';
 
@@ -16,13 +17,20 @@ export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSidenav)
   public sidenav!: MatSidenav;
 
+  @ViewChild(MatSidenavContent)
+  public content!: MatSidenavContent;
+
   @ViewChild('menuSlide') menuSlide!: ElementRef<HTMLDivElement>;
   
   menuOpened = true;
   menuMode: MatDrawerMode = 'side';
 
-  constructor(private http: HttpClient, elementRef: ElementRef, private cdRef: ChangeDetectorRef) {
-  }
+  constructor(
+    private http: HttpClient, 
+    elementRef: ElementRef, 
+    private cdRef: ChangeDetectorRef,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.http.post(`${environment.api}/visitor`, null).subscribe();
@@ -34,6 +42,11 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
     this.toggleCursor();
     this.activateCursor();
+
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationStart),
+      map(e => this.content.scrollTo({ top: 0, behavior: 'smooth' }))
+    ).subscribe();
   }
 
   ngAfterViewInit(): void {
