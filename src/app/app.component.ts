@@ -37,7 +37,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     private updates: SwUpdate
   ) {
     if (updates.isEnabled) {
-      interval(6 * 60 * 60).subscribe(() => updates.checkForUpdate()
+      updates.checkForUpdate().then();
+      interval(600000).subscribe(() => updates.checkForUpdate()
         .then(() => console.log('checking for updates')));
     }
     this.checkForUpdates();
