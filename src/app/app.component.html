@@ -6,9 +6,9 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <div #menuSlide class="menu-slide"></div>
+        <arturo-header [menuOpened]="menuOpened" [menuMode]="menuMode" (onClickMenuIcon)="toggleMenu()">
+        </arturo-header>
         <div class="page-wrap">
-            <arturo-header [menuOpened]="menuOpened" [menuMode]="menuMode" (onClickMenuIcon)="toggleMenu()">
-            </arturo-header>
             <main class="content">
                 <router-outlet></router-outlet>
             </main>
