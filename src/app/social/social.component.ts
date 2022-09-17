@@ -46,7 +46,8 @@ export class SocialComponent implements OnInit {
       "You",
       "Enjoy",
       "Let's",
-      "Connect"
+      "Connect",
+      ""
     ];
 
     const morphTime = 1;
