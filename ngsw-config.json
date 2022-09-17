@@ -1,23 +1,17 @@
 {
   "$schema": "./node_modules/@angular/service-worker/config/schema.json",
   "index": "/index.html",
+  "appData": {
+    "version": "1663433289093"
+  },
   "assetGroups": [
-    {
-      "name": "index",
-      "installMode": "lazy",
-      "updateMode": "lazy",
-      "resources": {
-        "files": [
-          "/index.html"
-        ]
-      }
-    },
     {
       "name": "app",
       "installMode": "prefetch",
       "resources": {
         "files": [
           "/favicon.ico",
+          "/index.html",
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
@@ -33,6 +27,19 @@
           "/assets/**",
           "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "offline",
+      "urls": [
+        "https://fonts.googleapis.com"
+      ],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 100,
+        "maxAge": "3d"
       }
     }
   ]
