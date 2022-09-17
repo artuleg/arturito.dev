@@ -14,6 +14,7 @@ export class MenuComponent implements OnInit {
     { icon: 'home', name: 'Home', path: '' },
     { icon: 'favorite', name: 'Projects', path: 'projects' },
     { icon: 'public', name: 'Social', path: 'social' },
+    { icon: 'badge', name: 'CV', path: 'resume' },
   ]
 
   constructor(private router: Router) { }
