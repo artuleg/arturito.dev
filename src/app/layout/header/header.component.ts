@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'arturo-header',
@@ -12,9 +13,14 @@ export class HeaderComponent implements OnInit {
   @Input() menuOpened: boolean = true;
   @Input() menuMode: MatDrawerMode = 'side';
 
-  constructor() { }
+  constructor(private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    
+  }
+
+  showSnack(message: string) {
+    this.snackBar.open(message, '', {verticalPosition: 'top', duration: 2000, panelClass: 'center-snack'});
   }
 
   toggleMenu(): void {

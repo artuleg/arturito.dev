@@ -3,10 +3,10 @@
      <mat-icon>menu</mat-icon>
    </button>
    <span class="space"></span>
-   <mat-icon>accessibility</mat-icon>
-   <mat-icon>favorite</mat-icon>
-   <mat-icon>terminal</mat-icon>
-   <mat-icon>code</mat-icon>
+   <mat-icon (click)="showSnack('Siempre abierto')">accessibility</mat-icon>
+   <mat-icon (click)="showSnack('Con cariño')">favorite</mat-icon>
+   <mat-icon (click)="showSnack('Ejecutando comandos')">terminal</mat-icon>
+   <mat-icon (click)="showSnack('Y programando')">code</mat-icon>
    <mat-icon *ngIf="!menuOpened || menuMode == 'over'"></mat-icon>
    <span class="space"></span>
  </mat-toolbar>

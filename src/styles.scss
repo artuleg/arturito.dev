@@ -23,6 +23,11 @@ body {
   background-size: cover;
 }
 
+simple-snack-bar span {
+  margin:auto;
+  text-align: center;
+}
+
 *::-webkit-scrollbar {
   width: 0.5em;
 }
