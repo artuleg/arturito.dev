@@ -1,5 +1,7 @@
 import { animate, animateChild, query, stagger, style, transition, trigger } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { listAnimation } from '../core/router-animations';
 
 @Component({
@@ -32,7 +34,9 @@ export class SocialComponent implements OnInit {
     twitter: 'https://twitter.com/0xarturito'
   }
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
     // https://alvarotrigo.com/blog/css-text-animations/
@@ -123,6 +127,7 @@ export class SocialComponent implements OnInit {
 
 
   social(network: string) {
+    this.http.post(`${environment.api}/visitor/social`, null).subscribe();
     const url = this.networks[network];
     window.open(url, '_blank');
   }

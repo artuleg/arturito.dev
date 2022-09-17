@@ -4,7 +4,8 @@ import { MatDrawerMode, MatSidenav, MatSidenavContent } from '@angular/material/
 import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { stepper } from './core/router-animations';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogConnectComponent } from './shared/dialog-connect/dialog-connect.component';
 
 @Component({
   selector: 'arturo-root',
@@ -29,11 +30,22 @@ export class AppComponent implements OnInit, AfterViewInit {
     private http: HttpClient, 
     elementRef: ElementRef, 
     private cdRef: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.http.post(`${environment.api}/visitor`, null).subscribe();
+    this.http.post<{totalVisits: number, showedPopup: boolean}>(`${environment.api}/visitor`, null).subscribe(res => {
+      if (res.totalVisits > 10 && !res.showedPopup) {
+        const dialogRef = this.dialog.open(DialogConnectComponent);
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.router.navigate(['social']);
+          }
+        });
+      }
+    });
     const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
     if (width <= 750) {
