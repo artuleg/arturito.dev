@@ -3,6 +3,16 @@
   "index": "/index.html",
   "assetGroups": [
     {
+      "name": "index",
+      "installMode": "prefetch",
+      "updateMode": "lazy",
+      "resources": {
+        "files": [
+          "/index.html"
+        ]
+      }
+    },
+    {
       "name": "app",
       "installMode": "prefetch",
       "resources": {
@@ -25,30 +35,5 @@
         ]
       }
     }
-  ],
-  "dataGroups": [{
-    "name": "api-freshness",
-    "urls": [
-      "/timeline"
-    ],
-    "cacheConfig": {
-      "strategy": "freshness",
-      "maxSize": 100,
-      "maxAge": "3d",
-      "timeout": "10s"
-    }
-  },
-  {
-    "name": "index-freshness",
-    "urls": [
-      "/index.html"
-    ],
-    "cacheConfig": {
-      "strategy": "freshness",
-      "maxSize": 100,
-      "maxAge": "3d",
-      "timeout": "1s"
-    }
-  }
-]
+  ]
 }
