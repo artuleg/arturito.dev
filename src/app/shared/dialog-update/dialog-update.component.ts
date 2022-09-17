@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogUpdateComponent implements OnInit {
 
+  seconds = 15;
+
   constructor() { }
 
   ngOnInit(): void {
+    setInterval(() => {
+      this.seconds--;
+      if (this.seconds == 0) {
+        document.location.reload();
+      }
+    }, 1000);
   }
 
 }
