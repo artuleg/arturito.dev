@@ -14,7 +14,12 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<{count: number}>(`${environment.api}/visitor/count`).subscribe(res => {
-      this.numberVisitors = res.count;
+      const incrementer = setInterval(() => {
+        this.numberVisitors++;
+        if (this.numberVisitors == res.count) {
+          clearInterval(incrementer);
+        }
+      }, 100);
     });
   }
 

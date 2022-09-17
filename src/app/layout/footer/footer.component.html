@@ -1,9 +1,9 @@
 <mat-divider></mat-divider>
 <div class="footer-cnt">
     <footer>
-        <div *ngIf="numberVisitors > 0">
+        <div>
             <mat-chip-list>
-                <mat-chip color="primary">{{ numberVisitors }} awesome persons has visited me!</mat-chip>
+                <mat-chip *ngIf="numberVisitors > 0" color="primary">{{ numberVisitors }} awesome persons has visited me!</mat-chip>
                 <mat-chip>
                     <span style="margin-right: 17px;">Made with</span>
                     <img class="blob red" src="./assets/img/love.svg" />
