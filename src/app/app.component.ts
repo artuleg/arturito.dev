@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConnectComponent } from './shared/dialog-connect/dialog-connect.component';
 import { SwUpdate } from '@angular/service-worker';
+import { DialogUpdateComponent } from './shared/dialog-update/dialog-update.component';
 
 @Component({
   selector: 'arturo-root',
@@ -48,7 +49,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   private promptUser(): void {
     console.log('updating to new version');
-    this.updates.activateUpdate().then(() => document.location.reload()); 
+    this.updates.activateUpdate().then(() => this.dialog.open(DialogUpdateComponent)); 
   }
 
   ngOnInit(): void {
