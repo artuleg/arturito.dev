@@ -20,6 +20,10 @@ main {
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 60px);
+
+    @media only screen and (max-width: 440px) {
+      min-height: calc(100vh - 80px);
+    }
   }
   
   .content {
