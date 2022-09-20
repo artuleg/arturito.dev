@@ -1,8 +1,8 @@
 {
-  "name": "Arturo LR",
+  "name": "Arturito",
   "short_name": "arturo",
-  "theme_color": "#00070d",
-  "background_color": "#00070d",
+  "theme_color": "#000000",
+  "background_color": "#000000",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
