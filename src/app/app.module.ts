@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,6 +12,7 @@ import { LayoutModule } from './layout/layout.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { SharedModule } from './shared/shared.module';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -22,6 +25,8 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
 
     MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
     
     AppRoutingModule,
     LayoutModule,

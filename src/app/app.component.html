@@ -16,3 +16,7 @@
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
+
+<button class="chat" *ngIf="!routeChat()" color="primary" routerLink="chat" mat-fab aria-label="Acesso a chat">
+    <mat-icon>chat</mat-icon>
+</button>

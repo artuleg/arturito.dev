@@ -133,4 +133,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.menuMode = 'side';
     }
   }
+
+  routeChat() {
+    return location.href.includes('/chat');
+  }
 }

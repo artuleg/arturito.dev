@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'projects', loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule) },
   { path: 'social', loadChildren: () => import('./social/social.module').then(m => m.SocialModule) },
   { path: 'resume', loadChildren: () => import('./resume/resume.module').then(m => m.ResumeModule) },
+  { path: 'chat', loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule) },
 
   { path: '**', redirectTo: '/' }
 ];

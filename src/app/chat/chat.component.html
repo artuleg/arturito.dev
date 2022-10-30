@@ -1,0 +1,5 @@
+<div class="content" [style.height]="screenHeigth">
+    <ng-terminal #term 
+    (keyInput)="onKeyInput($event)"
+    (keyEvent)="onKeyEvent($event)"></ng-terminal>
+</div>

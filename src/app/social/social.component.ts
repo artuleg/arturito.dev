@@ -2,7 +2,6 @@ import { animate, animateChild, query, stagger, style, transition, trigger } fro
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { listAnimation } from '../core/router-animations';
 
 @Component({
   selector: 'arturo-social',
