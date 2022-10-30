@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgTerminal } from 'ng-terminal';
 import { FunctionsUsingCSI } from 'ng-terminal';
 import { environment } from 'src/environments/environment';
@@ -16,8 +17,10 @@ export class ChatComponent implements OnInit, AfterViewInit {
   readonly prompt$ = '\n' + FunctionsUsingCSI.cursorColumn(1) + '> ';
   readonly prompt = '\n' + FunctionsUsingCSI.cursorColumn(1) + '';
   command = '';
+  commandsPile: string[] = [];
+  count = 0;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -41,21 +44,29 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
   onKeyInput(event: any) {
-    console.log('input', event);
     this.command = this.command + event;
-    console.log(this.command);
   }
 
   onKeyEvent(event: any) {
     console.log('event', event);
+    this.command = this.command.replace(event.key, '');
     if (event.key == '\x7F') {
       this.command = this.command.substring(0, this.command.length - 1);
     }
+    if (event.key == '\x1B[A') {
+      return;
+      this.child.write('\x1b[2K\r');
+      this.command = this.commandsPile[this.commandsPile.length - 1]
+      this.child.write(this.command);
+    }
+    
     if (event.key == '\r') {
       this.http.post<any>(`${environment.api}/chat/answer`, { question: this.command.replace('\r', '') }).subscribe((res => {
         this.child.write(res.answer[0])
         this.child.write(this.prompt$);
+        this.count = this.count + 2;
       }));
+      this.commandsPile.push(this.command);
       this.command = '';
     }
   }
