@@ -16,7 +16,7 @@ export class ChatbotComponent {
 
   sendMessage() {
     this.messages.push({ text: this.userMessage, from: 'sent' });
-    this.http.post<any>(`${environment.api}/chatai`, { messages: this.userMessage }).subscribe((res => {
+    this.http.post<any>(`${environment.api}/chatai`, { message: this.userMessage }).subscribe((res => {
       this.messages.push({ text: res.message, from: 'received' });
     }));
 
