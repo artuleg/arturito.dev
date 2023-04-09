@@ -369,10 +369,6 @@
 
 /* Small Screens */
 
-@media (max-width: 768px) {
-    
-}
-
 .marvel-device.nexus5 {
     border-radius: 0;
     flex: none;
@@ -409,4 +405,14 @@
 
 .conversation .conversation-container {
     height: calc(100vh - 270px);
+}
+
+@media (max-width: 440px) {
+    .conversation {
+        height: calc(100vh - 270px);
+    }
+    
+    .conversation .conversation-container {
+        height: calc(100vh - 340px);
+    }
 }
