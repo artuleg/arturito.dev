@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'social', loadChildren: () => import('./social/social.module').then(m => m.SocialModule) },
   { path: 'resume', loadChildren: () => import('./resume/resume.module').then(m => m.ResumeModule) },
   { path: 'chat', loadChildren: () => import('./chatbot/chatbot.module').then(m => m.ChatbotModule) },
+  { path: 'games', loadChildren: () => import('./games/games.module').then(m => m.GamesModule) },
 
   { path: '**', redirectTo: '/' }
 ];

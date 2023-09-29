@@ -1,0 +1,19 @@
+<h1>Tres en Raya</h1>
+
+<div *ngFor="let row of board; let i = index">
+  <div class="row">
+    <div
+      class="cell"
+      *ngFor="let cell of row; let j = index"
+      (click)="makeMove(i, j)"
+    >
+      {{ cell }}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="checkWinner()">
+  <h2 *ngIf="checkWinner() === 'Draw'">¡Empate!</h2>
+  <h2 *ngIf="checkWinner() !== 'Draw'">¡{{ checkWinner() }} ha ganado!</h2>
+  <button (click)="restartGame()">Reiniciar</button>
+</div>
