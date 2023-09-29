@@ -14,10 +14,16 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<{count: number}>(`${environment.api}/visitor/count`).subscribe(res => {
+      const maxTime = 7000; // 7 segundos en milisegundos
+      const incrementAmount = (res.count / maxTime) * 100; // Incremento por milisegundo
+
+      let currentTime = 0;
       const incrementer = setInterval(() => {
-        this.numberVisitors++;
-        if (this.numberVisitors == res.count) {
+        this.numberVisitors += Math.round(incrementAmount);
+        currentTime += 100;
+        if (currentTime >= maxTime) {
           clearInterval(incrementer);
+          this.numberVisitors = res.count; // Asegurarse de que el contador alcance el máximo
         }
       }, 100);
     });
