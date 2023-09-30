@@ -31,7 +31,6 @@
     "compresion": "^1.7.11",
     "express": "^4.18.1",
     "hammerjs": "^2.0.8",
-    "ng-terminal": "^5.2.0",
     "ngx-extended-pdf-viewer": "^15.0.2",
     "path": "^0.12.7",
     "rxjs": "~7.5.0",
