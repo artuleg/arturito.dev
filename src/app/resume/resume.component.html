@@ -1,4 +1,5 @@
 <ngx-extended-pdf-viewer
      [src]="'/assets/docs/CV_Arturo_Legaspi_Rodrigo.pdf'"
-     [pageViewMode]="'infinite-scroll'">
+     [pageViewMode]="'infinite-scroll'"
+     *ngIf="isBrowser">
 </ngx-extended-pdf-viewer>

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { MatDrawerMode, MatSidenav, MatSidenavContent } from '@angular/material/sidenav';
 import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { filter, interval, map } from 'rxjs';
@@ -8,6 +8,7 @@ import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { DialogConnectComponent } from './shared/dialog-connect/dialog-connect.component';
 import { SwUpdate } from '@angular/service-worker';
 import { DialogUpdateComponent } from './shared/dialog-update/dialog-update.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'arturo-root',
@@ -29,12 +30,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   menuMode: MatDrawerMode = 'side';
 
   constructor(
-    private http: HttpClient, 
-    elementRef: ElementRef, 
-    private cdRef: ChangeDetectorRef,
+    private http: HttpClient,
     private router: Router,
     public dialog: MatDialog,
-    private updates: SwUpdate
+    private updates: SwUpdate,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     if (updates.isEnabled) {
       interval(6 * 60 * 60).subscribe(() => updates.checkForUpdate()
@@ -65,11 +65,14 @@ export class AppComponent implements OnInit, AfterViewInit {
         });
       }
     });
-    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-    if (width <= 750) {
-      this.menuOpened = false;
-      this.menuMode = 'over';
+    if (isPlatformBrowser(this.platformId)) {
+      const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+      if (width <= 750) {
+        this.menuOpened = false;
+        this.menuMode = 'over';
+      }
     }
     this.toggleCursor();
     this.activateCursor();
@@ -81,31 +84,37 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const hammertime = new (window as any).Hammer(this.menuSlide.nativeElement, {});
-    hammertime.on('panright', () => {
-        this.sidenav.open();
-        this.menuOpened = true;
-    });
-    hammertime.on('panleft', () => {
-        this.sidenav.close();
-        this.menuOpened = false;
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      const hammertime = new (window as any).Hammer(this.menuSlide.nativeElement, {});
+      hammertime.on('panright', () => {
+          this.sidenav.open();
+          this.menuOpened = true;
+      });
+      hammertime.on('panleft', () => {
+          this.sidenav.close();
+          this.menuOpened = false;
+      });
+    }
   }
 
   activateCursor(): void {
-    const cursor: any = document.getElementById('cursor');
-    document.body.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      const cursor: any = document.getElementById('cursor');
+      document.body.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+    }
   }
 
   toggleCursor() {
-    const cursor: HTMLElement | any = document.getElementById('cursor');
-    if ((<any> navigator).userAgentData.mobile === false) {
-      cursor.className = 'cursor';
-    } else {
-      cursor.className = '';
+    if (isPlatformBrowser(this.platformId)) {
+      const cursor: HTMLElement | any = document.getElementById('cursor');
+      if ((<any> navigator).userAgentData.mobile === false) {
+        cursor.className = 'cursor';
+      } else {
+        cursor.className = '';
+      }
     }
   }
 
@@ -122,19 +131,25 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    if (isPlatformBrowser(this.platformId)) {
+      const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-    this.toggleCursor();
-    if (width <= 750) {
-      this.menuOpened = false;
-      this.menuMode = 'over';
-    } else {
-      this.menuOpened = true;
-      this.menuMode = 'side';
+      this.toggleCursor();
+      if (width <= 750) {
+        this.menuOpened = false;
+        this.menuMode = 'over';
+      } else {
+        this.menuOpened = true;
+        this.menuMode = 'side';
+      }
     }
   }
 
   routeChat() {
-    return location.href.includes('/chat');
+    if (isPlatformBrowser(this.platformId)) {
+      return location.href.includes('/chat');
+    }
+
+    return false;
   }
 }

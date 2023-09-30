@@ -16,7 +16,8 @@
     "dev:ssr": "ng run arturo-ui:serve-ssr",
     "serve:ssr": "node dist/arturo-ui/server/main.js",
     "build:ssr": "ng build && ng run arturo-ui:server",
-    "prerender": "ng run arturo-ui:prerender"
+    "prerender": "ng run arturo-ui:prerender",
+    "start:heroku": "npm run serve:ssr"
   },
   "private": true,
   "dependencies": {

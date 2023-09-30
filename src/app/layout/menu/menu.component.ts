@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, EventEmitter, Inject, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,7 +24,7 @@ export class MenuComponent implements OnInit {
     ] }
   ]
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit(): void {
   }
@@ -38,7 +39,10 @@ export class MenuComponent implements OnInit {
   }
 
   activeMenu(menu: any): boolean {
-    return location.pathname.replace('/', '') === menu.path;
+    if (isPlatformBrowser(this.platformId)) {
+      return location.pathname.replace('/', '') === menu.path;
+    }
+    return false;
   }
 
 }
