@@ -1,63 +1,64 @@
 mat-sidenav-container {
-    max-width: 1024px;
-    margin: 0 auto;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  max-width: 1024px;
+  margin: 0 auto;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 mat-sidenav {
-    width: 246px
+  width: 246px
 }
 
 main {
-    margin: 27px;
+  margin: 27px;
 }
 
 .all-wrap {
-    min-height: 100vh;
-  }
-  
-  .page-wrap {
-    display: flex;
-    flex-direction: column;
-    min-height: calc(100vh - 60px);
+  min-height: 100vh;
+}
 
-    @media only screen and (max-width: 440px) {
-      min-height: calc(100vh - 80px);
-    }
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 60px);
+
+  @media only screen and (max-width: 440px) {
+    min-height: calc(100vh - 80px);
   }
-  
-  .content {
-    flex: 1;
-  }
-  
-  
-  /*
+}
+
+.content {
+  flex: 1;
+}
+
+
+/*
    * Make the Component injected by Router Outlet full height:
    */
-  main {
-    display: flex;
-    flex-direction: column;
-    > *:not(router-outlet) {
-      flex: 1;
-      display: block;
-    }
+main {
+  display: flex;
+  flex-direction: column;
+
+  >*:not(router-outlet) {
+    flex: 1;
+    display: block;
   }
+}
 
 .cursor {
-    position: fixed;
-    border-radius: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    pointer-events: none;
-    left: -100px;
-    top: 50%;
-    mix-blend-mode: difference;
-    background-color:
-        white;
-    z-index: 10000;
-    border: 2px solid white;
-    height: 40px;
-    width: 40px;
-    transition: all 300ms ease-out;
+  position: fixed;
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  pointer-events: none;
+  left: -100px;
+  top: 50%;
+  mix-blend-mode: difference;
+  background-color:
+    white;
+  z-index: 10000;
+  border: 2px solid white;
+  height: 40px;
+  width: 40px;
+  transition: all 300ms ease-out;
 }
 
 .menu-slide {
@@ -77,25 +78,25 @@ main {
 
 
 
-.area{
-  background: #757575;  
-  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+.area {
+  background: #757575;
+  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
   width: 100%;
-  height:100vh;
-  
- 
+  height: 100vh;
+
+
 }
 
-.circles{
+.circles {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 100px);
+  height: calc(100% - 100px);
   overflow: hidden;
 }
 
-.circles li{
+.circles li {
   position: absolute;
   display: block;
   list-style: none;
@@ -104,10 +105,10 @@ main {
   background: rgba(255, 255, 255, 0.2);
   animation: animate 25s linear infinite;
   bottom: -150px;
-  
+
 }
 
-.circles li:nth-child(1){
+.circles li:nth-child(1) {
   left: 25%;
   width: 80px;
   height: 80px;
@@ -115,7 +116,7 @@ main {
 }
 
 
-.circles li:nth-child(2){
+.circles li:nth-child(2) {
   left: 10%;
   width: 20px;
   height: 20px;
@@ -123,14 +124,14 @@ main {
   animation-duration: 12s;
 }
 
-.circles li:nth-child(3){
+.circles li:nth-child(3) {
   left: 70%;
   width: 20px;
   height: 20px;
   animation-delay: 4s;
 }
 
-.circles li:nth-child(4){
+.circles li:nth-child(4) {
   left: 40%;
   width: 60px;
   height: 60px;
@@ -138,28 +139,28 @@ main {
   animation-duration: 18s;
 }
 
-.circles li:nth-child(5){
+.circles li:nth-child(5) {
   left: 65%;
   width: 20px;
   height: 20px;
   animation-delay: 0s;
 }
 
-.circles li:nth-child(6){
+.circles li:nth-child(6) {
   left: 75%;
   width: 110px;
   height: 110px;
   animation-delay: 3s;
 }
 
-.circles li:nth-child(7){
+.circles li:nth-child(7) {
   left: 35%;
   width: 150px;
   height: 150px;
   animation-delay: 7s;
 }
 
-.circles li:nth-child(8){
+.circles li:nth-child(8) {
   left: 50%;
   width: 25px;
   height: 25px;
@@ -167,7 +168,7 @@ main {
   animation-duration: 45s;
 }
 
-.circles li:nth-child(9){
+.circles li:nth-child(9) {
   left: 20%;
   width: 15px;
   height: 15px;
@@ -175,7 +176,7 @@ main {
   animation-duration: 35s;
 }
 
-.circles li:nth-child(10){
+.circles li:nth-child(10) {
   left: 85%;
   width: 150px;
   height: 150px;
@@ -187,19 +188,16 @@ main {
 
 @keyframes animate {
 
-  0%{
-      transform: translateY(0) rotate(0deg);
-      opacity: 1;
-      border-radius: 0;
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
   }
 
-  100%{
-      transform: translateY(-1000px) rotate(720deg);
-      opacity: 0;
-      border-radius: 50%;
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
   }
 
 }
-
-
-
