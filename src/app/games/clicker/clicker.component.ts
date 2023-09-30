@@ -1,5 +1,6 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -18,25 +19,27 @@ export class ClickerComponent implements OnInit {
   footerHeight = 72;
   game!: { record: number, beated: boolean };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   generateRandomPosition() {
-    const maxTop = window.innerHeight - this.footerHeight - 100;
-    let maxLeft = window.innerWidth > 1024 ? 924 : window.innerWidth - 100;
-    if ((<HTMLElement> document.querySelector('mat-sidenav'))?.style.visibility == 'visible') {
-      maxLeft = maxLeft - 245;
-    }
+    if (isPlatformBrowser(this.platformId)) {
+      const maxTop = window.innerHeight - this.footerHeight - 100;
+      let maxLeft = window.innerWidth > 1024 ? 924 : window.innerWidth - 100;
+      if ((<HTMLElement> document.querySelector('mat-sidenav'))?.style.visibility == 'visible') {
+        maxLeft = maxLeft - 245;
+      }
 
-    let validPosition = false;
+      let validPosition = false;
 
-    while (!validPosition) {
-      const newTop = Math.floor(Math.random() * maxTop);
-      const newLeft = Math.floor(Math.random() * maxLeft);
+      while (!validPosition) {
+        const newTop = Math.floor(Math.random() * maxTop);
+        const newLeft = Math.floor(Math.random() * maxLeft);
 
-      if (newTop > this.headerHeight && newTop < maxTop) {
-        this.boxTop = newTop;
-        this.boxLeft = newLeft;
-        validPosition = true;
+        if (newTop > this.headerHeight && newTop < maxTop) {
+          this.boxTop = newTop;
+          this.boxLeft = newLeft;
+          validPosition = true;
+        }
       }
     }
   }

@@ -1,5 +1,6 @@
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 const btoa = (str: string) => window.btoa(unescape(encodeURIComponent(str)));
@@ -22,17 +23,21 @@ export class AhorcadoComponent implements OnInit {
   game: any;
   gameLoaded = false;
 
-  constructor(private http: HttpClient) {
-    this.loadState(); // Cargar el estado al iniciar
-    if (!this.gameLoaded) {
-      this.startGame();
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadState(); // Cargar el estado al iniciar
+      if (!this.gameLoaded) {
+        this.startGame();
+      }
     }
   }
 
   ngOnInit() {
-    window.addEventListener('beforeunload', () => {
-      this.saveState(); // Guardar el estado antes de recargar la página
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      window.addEventListener('beforeunload', () => {
+        this.saveState(); // Guardar el estado antes de recargar la página
+      });
+    }
   }
 
   saveState() {
