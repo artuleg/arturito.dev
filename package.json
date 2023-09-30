@@ -54,6 +54,7 @@
     "@types/jasmine": "~4.0.0",
     "@types/node": "^16.11.7",
     "edit-json-file": "^1.7.0",
+    "express-static-cache": "^0.0.6",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
