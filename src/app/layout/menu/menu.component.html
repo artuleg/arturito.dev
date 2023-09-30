@@ -26,6 +26,7 @@
         <mat-nav-list dense>
             <a *ngFor="let submenu of menu.submenus"
                 [routerLink]="submenu.path"
+                (click)="emitNavigate()"
                 mat-list-item>
                 {{submenu.name}}
             </a>

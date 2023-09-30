@@ -28,6 +28,10 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  emitNavigate() {
+    this.onNavigate.emit();
+  }
+
   navigate(menu: any) {
     this.router.navigateByUrl(menu.path);
     this.onNavigate.emit();
