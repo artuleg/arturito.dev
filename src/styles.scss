@@ -20,10 +20,7 @@ $angular-dark-theme: mat.define-dark-theme((
 body {
   height: 100%;
   background-size: cover;
-
-  @media only screen and (min-width: 1024px) {
-    background-image: url('/assets/img/background.jpg');
-  }
+  margin: 0px;
 }
 
 simple-snack-bar span {

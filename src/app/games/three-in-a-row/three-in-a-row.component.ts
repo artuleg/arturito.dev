@@ -1,19 +1,48 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-three-in-a-row',
+  selector: 'arturo-three-in-a-row',
   templateUrl: './three-in-a-row.component.html',
   styleUrls: ['./three-in-a-row.component.scss']
 })
 export class ThreeInARowComponent implements OnInit {
-  currentPlayer: string = 'X';
+  game: any;
+  currentPlayer!: string;
   board: string[][] = [
     ['', '', ''],
     ['', '', ''],
     ['', '', '']
   ];
 
+  constructor(private http: HttpClient) {}
+
   ngOnInit() {
+
+    var numeroAleatorio = Math.random();
+    numeroAleatorio = numeroAleatorio * 10;
+    numeroAleatorio = Math.floor(numeroAleatorio);
+    
+    if (numeroAleatorio > 5) {
+      this.currentPlayer = 'O';
+      this.makeMove(1, 1);
+    } else {
+      this.currentPlayer = 'X';
+    }
+
+    const checkWin = setInterval(() => {
+      const winner = this.checkWinner();
+      if (winner) {
+        clearInterval(checkWin);
+        this.http.post<{ lost: number, win: number, draw: number }>(`${environment.api}/games/3row`, { 
+          type: winner == 'X' ? 'lost' : winner == 'Draw' ? 'draw' : 'win'
+        }).subscribe(res => {
+          this.game = res;
+        });
+      }
+    }, 10);
+
     setInterval(() => {
       if (this.currentPlayer === 'O') {
         this.makeAIMove()
@@ -131,11 +160,20 @@ export class ThreeInARowComponent implements OnInit {
   }
 
   restartGame() {
-    this.currentPlayer = 'X';
     this.board = [
       ['', '', ''],
       ['', '', ''],
       ['', '', '']
     ];
+    
+    var numeroAleatorio = Math.random();
+    numeroAleatorio = numeroAleatorio * 10;
+    numeroAleatorio = Math.floor(numeroAleatorio);
+    if (numeroAleatorio > 5) {
+      this.currentPlayer = 'O';
+      this.makeMove(1, 1);
+    } else {
+      this.currentPlayer = 'X';
+    }
   }
 }

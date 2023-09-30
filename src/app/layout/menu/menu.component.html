@@ -4,15 +4,34 @@
         <mat-card-title></mat-card-title>
     </mat-card-header>
 </mat-card>
-<mat-list>
-    <mat-list-item 
+<mat-nav-list>
+    <div *ngFor="let menu of menus">
+    <mat-list-item
         [ngClass]="{ active: activeMenu(menu) }" 
         matRipple 
-        *ngFor="let menu of menus"
+        *ngIf="!menu.submenus"
         (click)="navigate(menu)">
         <mat-divider></mat-divider>
         <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>
         <div mat-line>{{menu.name}}</div>
     </mat-list-item>
+    
+    <mat-expansion-panel *ngIf="menu.submenus" dense>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>
+                {{menu.name}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list dense>
+            <a *ngFor="let submenu of menu.submenus"
+                mat-list-item (click)="navigate(submenu)">
+                {{submenu.name}}
+            </a>
+        </mat-nav-list>
+        </mat-expansion-panel>
+    
+
     <mat-divider></mat-divider>
-</mat-list>
+</div>
+</mat-nav-list>

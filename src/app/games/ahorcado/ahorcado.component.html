@@ -1,0 +1,31 @@
+<div class="center" *ngIf="!gameOver">
+    <h1>Hangman</h1>
+    <p *ngIf="!wordToShow">Loading word ...</p>
+    <p class="word-show">{{ wordToShow }}</p>
+    <p>Remaining attemps: {{ remainingAttempts }}</p>
+    <div>
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="letter" (keyup.enter)="checkLetter()" placeholder="Ingresa una letra" />
+        </mat-form-field>
+        <button class="margin" mat-raised-button color="primary" (click)="checkLetter()">Try</button>
+    </div>
+    <div class="alert">
+        <div *ngFor="let message of alertMessages">{{ message }}</div>
+    </div>
+    <div>
+        <button mat-raised-button color="primary" (click)="resetGame()">Restart</button>
+    </div>
+  </div>
+  
+  <div *ngIf="gameOver">
+    <h2 *ngIf="isVictory">¡Has ganado!</h2>
+    <h2 *ngIf="!isVictory">¡Has perdido!</h2>
+
+    <div *ngIf="game" class="container-result">
+        <div>Victorias: {{ game.win }}</div>
+        <div>Ahorcados: {{ game.lost }}</div>
+      </div>
+    <p>La palabra era: {{ selectedWord }}</p>
+    <button mat-raised-button color="primary" (click)="resetGame()">Jugar de nuevo</button>
+  </div>
+  

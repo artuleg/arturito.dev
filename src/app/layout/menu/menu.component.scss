@@ -23,3 +23,10 @@ mat-card-title {
 .active {
     color: greenyellow;
 }
+
+mat-panel-title {
+    height: 48px;
+    mat-icon {
+        margin-right: 7px;
+    }
+}

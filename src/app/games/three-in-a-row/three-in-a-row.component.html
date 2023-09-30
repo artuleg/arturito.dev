@@ -1,4 +1,6 @@
-<h1>Tres en Raya</h1>
+<div class="container">
+  <!-- Your existing content -->
+  <h1>Tres en Raya</h1>
 
 <div *ngFor="let row of board; let i = index">
   <div class="row">
@@ -12,8 +14,14 @@
   </div>
 </div>
 
-<div *ngIf="checkWinner()">
+<div class="winner-section" *ngIf="checkWinner()">
   <h2 *ngIf="checkWinner() === 'Draw'">¡Empate!</h2>
-  <h2 *ngIf="checkWinner() !== 'Draw'">¡{{ checkWinner() }} ha ganado!</h2>
-  <button (click)="restartGame()">Reiniciar</button>
+  <h2 *ngIf="checkWinner() !== 'Draw'">¡{{ checkWinner() === 'X' ? 'Has ganado' : 'Has perdido' }}!</h2>
+  <div *ngIf="game" class="container-result">
+    <div>Victorias: {{ game.win }}</div>
+    <div>Derrotas: {{ game.lost }}</div>
+    <div>Empates: {{ game.draw }}</div>
+  </div>
+  <button mat-raised-button color="primary" (click)="restartGame()">Reiniciar</button>
+</div>
 </div>

@@ -15,6 +15,12 @@ export class MenuComponent implements OnInit {
     { icon: 'favorite', name: 'Projects', path: 'projects' },
     { icon: 'public', name: 'Social', path: 'social' },
     { icon: 'badge', name: 'CV', path: 'resume' },
+    { icon: 'games', name: 'Games', submenus: [
+      { name: 'Three in a row', path: 'games/three-row' },
+      { name: 'Clicker', path: 'games/clicker' },
+      { name: 'Hangman', path: 'games/hangman' },
+      { name: 'Memory', path: 'games/memory' }
+    ] }
   ]
 
   constructor(private router: Router) { }

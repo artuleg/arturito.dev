@@ -1,0 +1,16 @@
+<h5 class="center">{{ timeLeft }} segundos</h5>
+
+<div *ngIf="!gameOver" class="container">
+    <!-- Your content goes here -->
+    <div class="click-box move-animation" 
+        [style.top.px]="boxTop" 
+        [style.left.px]="boxLeft" 
+        (click)="handleClick()">
+    </div>
+</div>
+
+<div class="center" *ngIf="gameOver && game">
+    <p>Has conseguido una puntuacion de {{score}} el record es de -> {{ game.record }}</p>
+    <p *ngIf="game.beated">Has batido el record!</p>
+    <button mat-raised-button color="primary" (click)="restartGame()">Reinciar</button>
+</div>

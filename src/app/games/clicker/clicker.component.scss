@@ -1,0 +1,16 @@
+.click-box {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.center {
+  text-align: center;
+}
+
+.move-animation {
+  transition: top 0.5s ease, left 0.5s ease;
+}

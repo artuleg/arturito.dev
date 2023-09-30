@@ -1,0 +1,21 @@
+<h1>Memory</h1>
+
+<mat-form-field class="example-full-width">
+    <input type="number" matInput [(ngModel)]="numberOfCards" placeholder="Number of cards" min="2" max="26" />
+</mat-form-field>
+<button class="margin" mat-raised-button color="primary" (click)="restartGame()">Play</button>
+
+<h4 *ngIf="elapsedTime">Tiempo {{ elapsedTime }} segundos</h4>
+
+<div class="game-board">
+    <div *ngFor="let card of cards; let i = index" class="card" [class.flipped]="card.flipped" (click)="flipCard(i)">
+      <div class="card-inner">
+        <div class="card-front">{{ card.value }}</div>
+        <div class="card-back"></div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="gameComplete" class="game-complete-message">
+    <div>¡Juego completado!</div>
+  </div>

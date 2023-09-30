@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-chatbot',
+  selector: 'arturo-chatbot',
   templateUrl: './chatbot.component.html',
   styleUrls: ['./chatbot.component.scss']
 })
