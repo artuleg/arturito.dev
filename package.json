@@ -9,15 +9,14 @@
     "ng": "ng",
     "start": "node server.js",
     "serve": "ng serve",
-    "build": "node ngsw-version.js && ng build --configuration production",
+    "build": "node ngsw-version.js && npm run prerender",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "// heroku-postbuild": "node ngsw-version.js && ng build --configuration production",
     "dev:ssr": "ng run arturo-ui:serve-ssr",
     "serve:ssr": "node dist/arturo-ui/server/main.js",
     "build:ssr": "ng build && ng run arturo-ui:server",
-    "prerender": "ng run arturo-ui:prerender",
-    "start:heroku": "npm run prerender"
+    "prerender": "ng run arturo-ui:prerender"
   },
   "private": true,
   "dependencies": {
