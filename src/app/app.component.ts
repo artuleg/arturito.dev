@@ -4,7 +4,7 @@ import { MatDrawerMode, MatSidenav, MatSidenavContent } from '@angular/material/
 import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { filter, interval, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { DialogConnectComponent } from './shared/dialog-connect/dialog-connect.component';
 import { SwUpdate } from '@angular/service-worker';
 import { DialogUpdateComponent } from './shared/dialog-update/dialog-update.component';
