@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   @ViewChild('menuSlide') menuSlide!: ElementRef<HTMLDivElement>;
   
-  menuOpened = true;
+  menuOpened = false;
   menuMode: MatDrawerMode = 'side';
 
   constructor(
