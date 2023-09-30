@@ -13,11 +13,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { SharedModule } from './shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
+import { HomeComponent } from './home/home.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +29,8 @@ import { MatIconModule } from '@angular/material/icon';
 
     MatSidenavModule,
     MatButtonModule,
+    MatIconModule,
+    MatCardModule,
     MatIconModule,
     
     AppRoutingModule,
