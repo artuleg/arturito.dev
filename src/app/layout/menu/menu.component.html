@@ -25,7 +25,8 @@
         </mat-expansion-panel-header>
         <mat-nav-list dense>
             <a *ngFor="let submenu of menu.submenus"
-                mat-list-item (click)="navigate(submenu)">
+                [routerLink]="submenu.path"
+                mat-list-item>
                 {{submenu.name}}
             </a>
         </mat-nav-list>
