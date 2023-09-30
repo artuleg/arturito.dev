@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'resume', loadChildren: () => import('./resume/resume.module').then(m => m.ResumeModule) },
   { path: 'chat', loadChildren: () => import('./chatbot/chatbot.module').then(m => m.ChatbotModule) },
   { path: 'games', loadChildren: () => import('./games/games.module').then(m => m.GamesModule) },
-
+  { path: 'board', loadChildren: () => import('./board/board.module').then(m => m.BoardModule) },
+  
   { path: '**', redirectTo: '/' }
 ];
 
