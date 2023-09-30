@@ -22,7 +22,7 @@ export class ClickerComponent implements OnInit {
 
   generateRandomPosition() {
     const maxTop = window.innerHeight - this.footerHeight - 100;
-    let maxLeft = window.innerWidth - 100;
+    let maxLeft = window.innerWidth > 1024 ? 924 : window.innerWidth - 100;
     if ((<HTMLElement> document.querySelector('mat-sidenav'))?.style.visibility == 'visible') {
       maxLeft = maxLeft - 245;
     }
