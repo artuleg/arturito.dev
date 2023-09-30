@@ -22,6 +22,9 @@ export class BoardComponent implements OnInit {
         if (e.person == 'estefania') {
           e.awards.forEach((a: any) => this.estefaniaTasks.push(a.name))
         }
+        if (e.person == 'arturo') {
+          e.awards.forEach((a: any) => this.arturoTasks.push(a.name))
+        }
       });
     });
   }
@@ -33,6 +36,7 @@ export class BoardComponent implements OnInit {
       this.estefaniaTasks.push(this.newEstefaniaTask);
       this.newEstefaniaTask = '';
     } else if (person === 'arturo' && this.newArturoTask.trim() !== '') {
+      this.http.post(`${environment.api}/board/${person}`, { award: { name: this.newArturoTask } }).subscribe();
       this.arturoTasks.push(this.newArturoTask);
       this.newArturoTask = '';
     }
