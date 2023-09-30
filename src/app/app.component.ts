@@ -36,7 +36,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     private updates: SwUpdate,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    if (updates.isEnabled && isPlatformBrowser(this.platformId)) {
+    if (updates.isEnabled) {
       interval(6 * 60 * 60).subscribe(() => updates.checkForUpdate()
         .then(() => console.log('checking for updates')));
       this.checkForUpdates();
@@ -54,19 +54,19 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.http.post<{totalVisits: number, showedPopup: boolean}>(`${environment.api}/visitor`, null).subscribe(res => {
+      if (res.totalVisits > 10 && !res.showedPopup) {
+        const dialogRef = this.dialog.open(DialogConnectComponent);
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.router.navigate(['social']);
+          }
+        });
+      }
+    });
+
     if (isPlatformBrowser(this.platformId)) {
-      this.http.post<{totalVisits: number, showedPopup: boolean}>(`${environment.api}/visitor`, null).subscribe(res => {
-        if (res.totalVisits > 10 && !res.showedPopup) {
-          const dialogRef = this.dialog.open(DialogConnectComponent);
-
-          dialogRef.afterClosed().subscribe(result => {
-            if (result) {
-              this.router.navigate(['social']);
-            }
-          });
-        }
-      });
-
       const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
       if (width <= 750) {
