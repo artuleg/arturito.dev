@@ -160,7 +160,11 @@
           "builder": "@nguniversal/builders:prerender",
           "options": {
             "routes": [
-              "/"
+              "/",
+              "/projects",
+              "/social",
+              "/chat",
+              "/games"
             ],
             "guessRoutes": false
           },

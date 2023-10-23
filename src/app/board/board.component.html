@@ -1,19 +1,25 @@
 <div>
     <h2>Estefanía</h2>
     <ul>
-      <li *ngFor="let task of estefaniaTasks">{{ task }} <button (click)="removeTask('estefania', task)">Eliminar</button></li>
+      <li *ngFor="let task of estefaniaTasks">
+        <!-- <button mat-raised-button color="primary" (click)="update('estefania', task)">Usar</button> -->
+        {{ task }}
+    </li>
     </ul>
-    <input type="text" [(ngModel)]="newEstefaniaTask" />
-    <button (click)="addTask('estefania')">Añadir</button>
+    <mat-form-field class="example-full-width">
+        <input matInput [(ngModel)]="newEstefaniaTask" placeholder="Posesion" />
+    </mat-form-field>
+    
+    <button mat-raised-button color="primary" (click)="addTask('estefania')">Añadir</button>
   </div>
   
   <div>
     <h2>Arturo</h2>
     <ul>
-      <li *ngFor="let task of arturoTasks">{{ task }} <button (click)="removeTask('arturo', task)">Eliminar</button></li>
+      <li *ngFor="let task of arturoTasks">{{ task }}</li>
     </ul>
     <input type="text" [(ngModel)]="newArturoTask" />
-    <button (click)="addTask('arturo')">Añadir</button>
+    <button mat-raised-button color="primary" (click)="addTask('arturo')">Añadir</button>
   </div>
 
   <img width="500px" src="./assets/img/condiciones.jpeg" />

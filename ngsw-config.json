@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@angular/service-worker/config/schema.json",
   "index": "/index.html",
   "appData": {
-    "version": "1696077866034"
+    "version": "1696104700729"
   },
   "assetGroups": [
     {

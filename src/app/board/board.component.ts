@@ -43,11 +43,12 @@ export class BoardComponent implements OnInit {
     
   }
 
-  removeTask(person: string, task: string) {
+  update(person: string, task: string) {
+    return;
     if (person === 'estefania') {
-      this.estefaniaTasks = this.estefaniaTasks.filter(t => t !== task);
+      // this.estefaniaTasks = this.estefaniaTasks.filter(t => t !== task);
     } else if (person === 'arturo') {
-      this.arturoTasks = this.arturoTasks.filter(t => t !== task);
+      this.http.patch(`${environment.api}/board/${person}`, { award: { name: this.newEstefaniaTask } }).subscribe();
     }
   }
 }
